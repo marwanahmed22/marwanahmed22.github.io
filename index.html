@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marwan Ahmed — AI Video & Motion</title>
+<meta name="description" content="AI commercials that look shot, not generated. AI video producer and motion designer, Egypt.">
+<meta property="og:title" content="Marwan Ahmed — AI Video & Motion">
+<meta property="og:description" content="AI commercials that look shot, not generated.">
+<meta property="og:image" content="posters/skoda.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230E0D0C'/%3E%3Cpath fill='%23C8F03C' d='M2 1h1v6H2zM3 2h1v4H3zM4 3h1v2H4z'/%3E%3C/svg%3E">
+<style>
+@font-face { font-family: Pix; src: url(fonts/PixelifySans-400.ttf); font-weight: 400; font-display: swap; }
+@font-face { font-family: Pix; src: url(fonts/PixelifySans-700.ttf); font-weight: 700; font-display: swap; }
+@font-face { font-family: Silk; src: url(fonts/Silkscreen-Regular.ttf); font-display: swap; }
+@font-face { font-family: Man; src: url(fonts/Manrope-500.ttf); font-display: swap; }
+
+:root {
+  --bg: #0E0D0C; --panel: #1A1816; --txt: #F2EFE9; --muted: #9C968C; --soft: #C9C4BB;
+  --line: #2E2B27; --acc: #C8F03C;
+  --px: 6px;
+  --notch: polygon(0 calc(var(--px)*2), var(--px) calc(var(--px)*2), var(--px) var(--px), calc(var(--px)*2) var(--px), calc(var(--px)*2) 0,
+    calc(100% - var(--px)*2) 0, calc(100% - var(--px)*2) var(--px), calc(100% - var(--px)) var(--px), calc(100% - var(--px)) calc(var(--px)*2), 100% calc(var(--px)*2),
+    100% calc(100% - var(--px)*2), calc(100% - var(--px)) calc(100% - var(--px)*2), calc(100% - var(--px)) calc(100% - var(--px)), calc(100% - var(--px)*2) calc(100% - var(--px)), calc(100% - var(--px)*2) 100%,
+    calc(var(--px)*2) 100%, calc(var(--px)*2) calc(100% - var(--px)), var(--px) calc(100% - var(--px)), var(--px) calc(100% - var(--px)*2), 0 calc(100% - var(--px)*2));
+  --gut: clamp(16px, 5vw, 96px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--txt); font: 400 18px/1.5 Pix, monospace; overflow-x: hidden;
+  background-image: radial-gradient(var(--line) 1px, transparent 1.5px); background-size: 32px 32px; background-position: 15px 15px;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1500px; margin: 0 auto; padding-inline: var(--gut); }
+.lab { font: 12px/1 Silk, monospace; letter-spacing: .06em; text-transform: uppercase; }
+
+/* boot screen */
+#boot { position: fixed; inset: 0; z-index: 50; background: var(--bg); display: grid; place-items: center; transition: opacity .3s steps(3); }
+#boot.done { opacity: 0; pointer-events: none; }
+#boot .box { width: min(320px, 80vw); }
+#boot .bar { height: 18px; border: 3px solid var(--txt); padding: 3px; margin-top: 12px; }
+#boot .fill { height: 100%; width: 0; background: var(--acc); animation: load 1s steps(10) forwards; }
+@keyframes load { to { width: 100%; } }
+
+/* nav */
+nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+nav b { font: 700 22px Pix; }
+nav .links { display: flex; gap: 24px; }
+nav .links a:hover { color: var(--acc); }
+@media (max-width: 720px) { nav .links a:not(.cta) { display: none; } }
+
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; clip-path: var(--notch); font: 13px/1 Silk; text-transform: uppercase;
+  background: var(--acc); color: var(--bg); transition: transform .15s steps(2); }
+.btn:hover { transform: translate(-3px, -3px); }
+.btn.ghost { background: var(--panel); color: var(--txt); }
+.btn.small { padding: 10px 14px; font-size: 11px; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(24px, 4vw, 72px); align-items: center; padding-top: clamp(40px, 8vh, 96px); padding-bottom: 72px; }
+.role { color: var(--soft); display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+.role i { width: 12px; height: 12px; background: var(--acc); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+h1 { font: 700 clamp(40px, 5.8vw, 96px)/1.04 Pix; letter-spacing: -.01em; min-height: 3.06em; }
+h1 .cur { display: inline-block; width: .5em; height: .8em; background: var(--acc); vertical-align: -.05em; animation: blink .8s steps(1) infinite; }
+.hero p { color: var(--soft); font-size: clamp(18px, 1.6vw, 22px); max-width: 620px; margin: 28px 0 36px; }
+.hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.reel { position: relative; aspect-ratio: 9/16; max-height: 78vh; justify-self: end; width: 100%; max-width: 440px; clip-path: var(--notch); background: var(--panel); }
+.reel video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.reel .tag { position: absolute; left: 14px; top: 14px; background: var(--bg); color: var(--acc); padding: 8px 10px; clip-path: var(--notch); --px: 3px; }
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .reel { justify-self: center; max-width: 340px; }
+  h1 { min-height: 0; }
+}
+
+/* section heads */
+section { padding: 72px 0; }
+.head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 32px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+h2 { font: 700 clamp(34px, 4.6vw, 64px)/1.05 Pix; }
+.head .lab { color: var(--muted); }
+.checker { height: 12px; background: conic-gradient(var(--acc) 25%, transparent 0 50%, var(--acc) 0 75%, transparent 0) 0 0/12px 12px; opacity: .9; }
+
+/* about */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.about p { color: var(--soft); font-size: 20px; }
+.about .tools { margin-top: 28px; color: var(--muted); }
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.card { background: var(--panel); clip-path: var(--notch); padding: 26px; }
+.card .n { color: var(--acc); font: 700 20px Pix; }
+.card h3 { font: 700 26px/1.1 Pix; margin: 18px 0 8px; }
+.card p { font-size: 16px; color: var(--soft); }
+@media (max-width: 860px) { .about, .services { grid-template-columns: 1fr; } }
+
+/* clients marquee */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding: 18px 0; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee + .marquee { border-top: 0; }
+.track { display: flex; width: max-content; gap: 48px; animation: slide 60s linear infinite; }
+.marquee.rev .track { animation-direction: reverse; }
+.track span { font: 700 clamp(26px, 3vw, 42px) Pix; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+.track span::after { content: ''; width: 10px; height: 10px; background: var(--acc); }
+@keyframes slide { to { transform: translateX(-50%); } }
+.marquee:hover .track { animation-play-state: paused; }
+
+/* work grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 28px 22px; }
+.tile { cursor: pointer; }
+.tile .media { position: relative; aspect-ratio: 4/5; clip-path: var(--notch); background: var(--panel); overflow: hidden; }
+.tile video, .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s steps(4); }
+.tile:hover video { transform: scale(1.04); }
+.tile .watch { position: absolute; right: 12px; top: 12px; background: var(--bg); padding: 8px 12px 8px 10px; display: flex; gap: 8px; align-items: center; clip-path: var(--notch); --px: 3px; }
+.tile .watch::before { content: ''; border-left: 10px solid var(--acc); border-block: 6px solid transparent; }
+.tile .meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; }
+.tile .client { color: var(--acc); }
+.pill { background: var(--acc); color: var(--bg); padding: 6px 10px; clip-path: var(--notch); --px: 2px; font-size: 10px; }
+.tile h3 { font: 700 26px/1.15 Pix; margin-top: 6px; }
+.tile.more .media { display: grid; place-items: center; text-align: center; background: transparent; outline: 2px dashed var(--line); outline-offset: -2px; clip-path: none; padding: 20px; }
+.tile.more h3 { font-size: 30px; }
+.tile.more .lab { color: var(--acc); margin-top: 12px; display: block; }
+
+/* stepped reveal */
+.rv { opacity: 0; transform: translateY(24px); }
+.rv.in { animation: rv .45s steps(4) forwards; }
+@keyframes rv { to { opacity: 1; transform: none; } }
+
+/* contact */
+.contact h2 { font-size: clamp(44px, 8vw, 120px); }
+.contact .ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 40px; }
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+/* lightbox */
+#lb { position: fixed; inset: 0; z-index: 40; background: rgba(8,8,7,.94); display: none; align-items: center; justify-content: center; padding: 64px 16px 24px; }
+#lb.open { display: flex; }
+#lb video { max-width: 100%; max-height: calc(100vh - 140px); background: #000; }
+#lb .bar { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 16px var(--gut); gap: 12px; }
+#lb .t { font: 700 22px Pix; }
+#lb .t small { color: var(--acc); font: 12px Silk; text-transform: uppercase; margin-right: 10px; }
+#lb button { background: var(--txt); color: var(--bg); border: 0; font: 13px Silk; padding: 10px 14px; cursor: pointer; clip-path: var(--notch); --px: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .track, #boot .fill, .role i, h1 .cur { animation: none !important; }
+  .rv { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<div id="boot"><div class="box"><div class="lab">Loading portfolio…</div><div class="bar"><div class="fill"></div></div></div></div>
+
+<nav><div class="wrap">
+  <b>Marwan Ahmed</b>
+  <div class="links lab">
+    <a href="#ai">AI video</a><a href="#motion">Motion</a><a href="#personal">Personal</a>
+    <a class="cta btn small" href="#contact">Contact</a>
+  </div>
+</div></nav>
+
+<header class="wrap hero">
+  <div>
+    <div class="role lab"><i></i>AI video producer &amp; motion designer · Egypt</div>
+    <h1 id="type" aria-label="AI commercials that look shot, not generated."></h1>
+    <p>AI product ads, brand films and social visuals for brands and agencies, finished with real motion design, editing and sound.</p>
+    <div class="ctas">
+      <a class="btn" href="#ai">&#9654; See the work</a>
+      <a class="btn ghost" href="Marwan_Ahmed_Portfolio_2026.pdf" download>Download PDF</a>
+    </div>
+  </div>
+  <div class="reel"><video src="reel.mp4" autoplay muted loop playsinline preload="auto"></video><span class="tag lab">Showreel</span></div>
+</header>
+<div class="checker"></div>
+
+<section class="wrap" id="about">
+  <div class="head"><h2>I turn briefs into finished AI commercials.</h2></div>
+  <div class="about">
+    <div>
+      <p>I work at a creative agency in the MENA region, making AI-led video for food, automotive, beverage and FMCG brands across Egypt, Saudi Arabia and the Gulf. I take a brief from concept to final delivery: AI generation, editing, motion graphics, sound design and every format and size.</p>
+      <div class="tools"><span class="lab">Tools</span><br>After Effects · Premiere Pro · Photoshop · Illustrator</div>
+    </div>
+    <div class="services" id="services"></div>
+  </div>
+</section>
+
+<section id="clients">
+  <div class="wrap head"><h2>Brands I’ve made work for</h2></div>
+  <div class="marquee"><div class="track" id="m1"></div></div>
+  <div class="marquee rev"><div class="track" id="m2"></div></div>
+</section>
+
+<section class="wrap" id="ai"><div class="head"><h2>AI video</h2><span class="lab">Tap a tile to watch</span></div><div class="grid"></div></section>
+<section class="wrap" id="motion"><div class="head"><h2>Motion design</h2></div><div class="grid"></div></section>
+<section class="wrap" id="personal"><div class="head"><h2>Personal projects</h2></div><div class="grid"></div></section>
+
+<div class="checker"></div>
+<section class="wrap contact" id="contact">
+  <h2>Have a product?<br>Let’s make it move.</h2>
+  <div class="ctas">
+    <a class="btn" href="mailto:marouaneahmed5@gmail.com">marouaneahmed5@gmail.com</a>
+    <a class="btn ghost" href="https://www.upwork.com/freelancers/~017ab79d3fea74a68d" target="_blank" rel="noopener">Upwork profile</a>
+    <a class="btn ghost" href="https://drive.google.com/drive/folders/13idBXc5SwJAm1ilyqi1Mo-arsp_2tg3W" target="_blank" rel="noopener">All videos on Drive</a>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Marwan Ahmed</span><span>AI Video · Motion Design · Egypt</span></div></footer>
+
+<div id="lb" role="dialog" aria-modal="true">
+  <div class="bar"><div class="t" id="lbt"></div><button id="lbx">Close ✕</button></div>
+  <video id="lbv" controls playsinline></video>
+</div>
+
+<script>
+const SERVICES = [
+  ['AI product ads', 'Scroll-stopping Reels and TikTok ads, no shoot needed.'],
+  ['AI brand films', 'Cinematic concept films with consistent characters and style.'],
+  ['AI product visuals', 'Studio and lifestyle product imagery for stores and campaigns.'],
+  ['Motion design', 'Logo animation, titles, sound and every size the media plan needs.'],
+];
+const CLIENTS = ['Škoda', 'Mercedes-Benz', "Wendy's", 'Pizza Hut', 'Burger King', "Domino's", 'Costa Coffee', 'Coffee Bean',
+  'Les Alpes', 'Zanussi', 'Spiro Spathis', 'NESS', 'Raha', 'Barsha', 'Rich Land', 'Domty', 'Saula', 'Larch', 'Dilli', 'BAM',
+  'Lycée Français', 'Lindo', 'Dosh', 'Taw Taw', 'Cotton Association', 'GB Auto', 'Jackaroo', 'Loqta', 'GOOM', 'Primalac',
+  'TAG', 'MK Creamery', 'Hun House', 'Sancho', 'Chill & Grill', 'Al Laith', 'Hummy Yummy', 'Nepit', 'Shahlin',
+  'Beit El Qedra', 'Noga', 'Penguin', 'TechZone', 'M&S'];
+// slug, client, title, tag, section
+const WORK = [
+  ['skoda', 'Škoda', 'Level Up', 'AI Video', 'ai'],
+  ['mercedes', 'Mercedes-Benz', 'Arrival', 'AI Video', 'ai'],
+  ['lesalpes', 'Les Alpes', 'Heartland', 'AI Video', 'ai'],
+  ['skoda-school', 'Škoda', 'First Day', 'AI Video', 'ai'],
+  ['wendys', "Wendy's", 'Wrapped', 'AI Video', 'ai'],
+  ['chillgrill', 'Chill & Grill', 'Stacked', 'AI Video', 'ai'],
+  ['skoda-superb', 'Škoda', 'Reflections', 'AI Video', 'ai'],
+  ['ness', 'NESS', 'Cold Run', 'AI Video', 'ai'],
+  ['raha', 'Raha', 'Ninety-Six', 'AI Video', 'ai'],
+  ['skoda-doodle', 'Škoda', 'Sketch', 'AI Video', 'ai'],
+  ['bam', 'BAM', 'Pop', 'AI Video', 'ai'],
+  ['barsha', 'Barsha', 'Break Out', 'AI Video', 'ai'],
+  ['saula', 'Saula', 'Sweet Start', 'Motion', 'motion'],
+  ['pizzahut', 'Pizza Hut', 'Half & Half', 'Motion', 'motion'],
+  ['tawtaw', 'Taw Taw', 'Everyone', 'Motion', 'motion'],
+  ['jackaroo', 'Jackaroo', 'Game On', 'Motion', 'motion'],
+  ['gbauto', 'GB Auto', 'Ride', 'Motion part only', 'motion'],
+  ['fiat', 'Personal project', 'Topolino', 'AI Video', 'personal'],
+  ['horror', 'Personal project', 'It Never Left', 'AI Video', 'personal'],
+  ['hermanos', 'Personal project', 'Los Hermanos', 'AI Video', 'personal'],
+  ['unbothered', 'Personal project', 'Unbothered', 'AI Video', 'personal'],
+];
+const DRIVE = 'https://drive.google.com/drive/folders/13idBXc5SwJAm1ilyqi1Mo-arsp_2tg3W';
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+$('#services').innerHTML = SERVICES.map(([t, b], i) =>
+  `<div class="card rv"><div class="n">${String(i + 1).padStart(2, '0')}</div><h3>${t}</h3><p>${b}</p></div>`).join('');
+const half = Math.ceil(CLIENTS.length / 2);
+[[CLIENTS.slice(0, half), '#m1'], [CLIENTS.slice(half), '#m2']].forEach(([list, id]) => {
+  const row = list.map(n => `<span>${esc(n)}</span>`).join('');
+  $(id).innerHTML = row + row;  // doubled so the -50% loop is seamless
+});
+
+for (const sec of ['ai', 'motion', 'personal']) {
+  const items = WORK.filter(w => w[4] === sec);
+  let html = items.map(([slug, client, title, tag]) => `
+    <div class="tile rv" data-slug="${slug}" data-title="${esc(title)}" data-client="${esc(client)}" tabindex="0" role="button" aria-label="Watch ${esc(title)}">
+      <div class="media">
+        <img src="posters/${slug}.jpg" alt="" loading="lazy">
+        <video data-src="loops/${slug}.mp4" muted loop playsinline preload="none"></video>
+        <span class="watch lab">Watch</span>
+      </div>
+      <div class="meta"><span class="client lab">${esc(client)}</span><span class="pill lab">${esc(tag)}</span></div>
+      <h3>${esc(title)}</h3>
+    </div>`).join('');
+  if (sec === 'personal') html += `
+    <a class="tile more rv" href="${DRIVE}" target="_blank" rel="noopener"><div class="media"><div>
+      <h3>More work on request</h3><span class="lab">All videos in one Drive folder &gt;&gt;</span></div></div></a>`;
+  $(`#${sec} .grid`).innerHTML = html;
+}
+
+// play loops only while on screen
+const playIO = new IntersectionObserver(es => es.forEach(e => {
+  const v = e.target;
+  if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
+  else v.pause();
+}), { rootMargin: '200px 0px' });
+document.querySelectorAll('.tile video').forEach(v => playIO.observe(v));
+
+// stepped reveal on scroll
+const revIO = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.style.animationDelay = (e.target.dataset.d || 0) + 'ms'; e.target.classList.add('in'); revIO.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll('.rv').forEach(el => {
+  const sibs = [...el.parentElement.children];
+  el.dataset.d = (sibs.indexOf(el) % 4) * 80;
+  revIO.observe(el);
+});
+
+// lightbox
+const lb = $('#lb'), lbv = $('#lbv');
+function openLB(t) {
+  $('#lbt').innerHTML = `<small>${esc(t.dataset.client)}</small>${esc(t.dataset.title)}`;
+  lbv.src = `full/${t.dataset.slug}.mp4`;
+  lb.classList.add('open');
+  lbv.play().catch(() => {});
+}
+function closeLB() { lb.classList.remove('open'); lbv.pause(); lbv.removeAttribute('src'); lbv.load(); }
+document.addEventListener('click', e => { const t = e.target.closest('.tile[data-slug]'); if (t) openLB(t); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLB();
+  if (e.key === 'Enter' && e.target.matches('.tile[data-slug]')) openLB(e.target);
+});
+$('#lbx').onclick = closeLB;
+lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+
+// boot screen, then type the headline
+const LINES = ['AI commercials', 'that look shot,', 'not generated.'];
+const h1 = $('#type');
+function typeIt() {
+  const full = LINES.join('\n');
+  let i = 0;
+  const step = () => {
+    h1.innerHTML = esc(full.slice(0, i)).replace(/\n/g, '<br>') + '<span class="cur"></span>';
+    if (i++ < full.length) setTimeout(step, full[i - 1] === '\n' ? 180 : 38);
+  };
+  step();
+}
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+setTimeout(() => { $('#boot').classList.add('done'); reduced ? h1.innerHTML = LINES.join('<br>') : typeIt(); }, reduced ? 0 : 1100);
+</script>
+</body>
+</html>
