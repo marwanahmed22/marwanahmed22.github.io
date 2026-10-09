@@ -93,15 +93,15 @@ h2 { font: 700 clamp(34px, 4.6vw, 64px)/1.05 Pix; }
 .card p { font-size: 16px; color: var(--soft); }
 @media (max-width: 860px) { .about, .services { grid-template-columns: 1fr; } }
 
-/* clients marquee */
-.marquee { overflow: hidden; border-block: 1px solid var(--line); padding: 18px 0; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marquee + .marquee { border-top: 0; }
-.track { display: flex; width: max-content; gap: 48px; animation: slide 60s linear infinite; }
-.marquee.rev .track { animation-direction: reverse; }
-.track span { font: 700 clamp(26px, 3vw, 42px) Pix; white-space: nowrap; display: flex; align-items: center; gap: 48px; }
-.track span::after { content: ''; width: 10px; height: 10px; background: var(--acc); }
-@keyframes slide { to { transform: translateX(-50%); } }
-.marquee:hover .track { animation-play-state: paused; }
+/* client wall */
+.wall { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.brand { position: relative; display: grid; place-items: center; padding: clamp(16px, 2vw, 26px) clamp(22px, 2.6vw, 40px);
+  background: var(--panel); clip-path: var(--notch); font: 700 clamp(20px, 2vw, 32px)/1 Pix; color: var(--txt); white-space: nowrap;
+  transition: background .2s steps(2), color .2s steps(2); }
+.brand::before { content: ''; position: absolute; left: 10px; top: 10px; width: 6px; height: 6px; background: var(--line); transition: background .2s steps(2); }
+.brand:hover { background: var(--acc); color: var(--bg); }
+.brand:hover::before { background: var(--bg); }
+.wall .lab.count { color: var(--muted); }
 
 /* work grid */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 28px 22px; }
@@ -140,7 +140,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 #lb button { background: var(--txt); color: var(--bg); border: 0; font: 13px Silk; padding: 10px 14px; cursor: pointer; clip-path: var(--notch); --px: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .track, #boot .fill, .role i, h1 .cur { animation: none !important; }
+  #boot .fill, .role i, h1 .cur { animation: none !important; }
   .rv { opacity: 1; transform: none; }
 }
 </style>
@@ -151,7 +151,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 <nav><div class="wrap">
   <b>Marwan Ahmed</b>
   <div class="links lab">
-    <a href="#ai">AI video</a><a href="#motion">Motion</a><a href="#personal">Personal</a>
+    <a href="#work">Work</a><a href="#clients">Clients</a><a href="#about">About</a>
     <a class="cta btn small" href="#contact">Contact</a>
   </div>
 </div></nav>
@@ -162,7 +162,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <h1 id="type" aria-label="AI commercials that look shot, not generated."></h1>
     <p>AI product ads, brand films and social visuals for brands and agencies, finished with real motion design, editing and sound.</p>
     <div class="ctas">
-      <a class="btn" href="#ai">&#9654; See the work</a>
+      <a class="btn" href="#work">&#9654; See the work</a>
       <a class="btn ghost" href="Marwan_Ahmed_Portfolio_2026.pdf" download>Download PDF</a>
     </div>
   </div>
@@ -182,14 +182,11 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 </section>
 
 <section id="clients">
-  <div class="wrap head"><h2>Brands I’ve made work for</h2></div>
-  <div class="marquee"><div class="track" id="m1"></div></div>
-  <div class="marquee rev"><div class="track" id="m2"></div></div>
+  <div class="wrap head"><h2>Brands I’ve made work for</h2><span class="lab" id="bcount"></span></div>
+  <div class="wrap"><div class="wall" id="wall"></div></div>
 </section>
 
-<section class="wrap" id="ai"><div class="head"><h2>AI video</h2><span class="lab">Tap a tile to watch</span></div><div class="grid"></div></section>
-<section class="wrap" id="motion"><div class="head"><h2>Motion design</h2></div><div class="grid"></div></section>
-<section class="wrap" id="personal"><div class="head"><h2>Personal projects</h2></div><div class="grid"></div></section>
+<section class="wrap" id="work"><div class="head"><h2>Selected work</h2><span class="lab">Tap a tile to watch</span></div><div class="grid"></div></section>
 
 <div class="checker"></div>
 <section class="wrap contact" id="contact">
@@ -249,28 +246,24 @@ const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&
 
 $('#services').innerHTML = SERVICES.map(([t, b], i) =>
   `<div class="card rv"><div class="n">${String(i + 1).padStart(2, '0')}</div><h3>${t}</h3><p>${b}</p></div>`).join('');
-const half = Math.ceil(CLIENTS.length / 2);
-[[CLIENTS.slice(0, half), '#m1'], [CLIENTS.slice(half), '#m2']].forEach(([list, id]) => {
-  const row = list.map(n => `<span>${esc(n)}</span>`).join('');
-  $(id).innerHTML = row + row;  // doubled so the -50% loop is seamless
-});
+$('#wall').innerHTML = CLIENTS.map(n => `<div class="brand rv">${esc(n)}</div>`).join('');
+$('#bcount').textContent = CLIENTS.length + ' brands';
 
-for (const sec of ['ai', 'motion', 'personal']) {
-  const items = WORK.filter(w => w[4] === sec);
-  let html = items.map(([slug, client, title, tag]) => `
+{
+  let html = WORK.map(([slug, client, title, tag]) => `
     <div class="tile rv" data-slug="${slug}" data-title="${esc(title)}" data-client="${esc(client)}" tabindex="0" role="button" aria-label="Watch ${esc(title)}">
       <div class="media">
         <img src="posters/${slug}.jpg" alt="" loading="lazy">
         <video data-src="loops/${slug}.mp4" muted loop playsinline preload="none"></video>
         <span class="watch lab">Watch</span>
       </div>
-      <div class="meta"><span class="client lab">${esc(client)}</span><span class="pill lab">${esc(tag)}</span></div>
+      <div class="meta"><span class="client lab">${esc(client)}</span>${slug === 'gbauto' ? '<span class="pill lab">Motion part only</span>' : ''}</div>
       <h3>${esc(title)}</h3>
     </div>`).join('');
-  if (sec === 'personal') html += `
+  html += `
     <a class="tile more rv" href="${DRIVE}" target="_blank" rel="noopener"><div class="media"><div>
       <h3>More work on request</h3><span class="lab">All videos in one Drive folder &gt;&gt;</span></div></div></a>`;
-  $(`#${sec} .grid`).innerHTML = html;
+  $('#work .grid').innerHTML = html;
 }
 
 // play loops only while on screen
