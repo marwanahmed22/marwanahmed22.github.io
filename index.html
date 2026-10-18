@@ -7,7 +7,10 @@
 <meta name="description" content="AI commercials that look shot, not generated. AI video producer and motion designer, Egypt.">
 <meta property="og:title" content="Marwan Ahmed — AI Video & Motion">
 <meta property="og:description" content="AI commercials that look shot, not generated.">
-<meta property="og:image" content="posters/skoda.jpg">
+<meta property="og:image" content="https://marwanahmed22.github.io/posters/skoda.jpg">
+<meta property="og:url" content="https://marwanahmed22.github.io/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://marwanahmed22.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%230E0D0C'/%3E%3Cpath fill='%23C8F03C' d='M2 1h1v6H2zM3 2h1v4H3zM4 3h1v2H4z'/%3E%3C/svg%3E">
 <style>
 @font-face { font-family: Pix; src: url(fonts/PixelifySans-400.ttf); font-weight: 400; font-display: swap; }
@@ -66,6 +69,8 @@ h1 { font: 700 clamp(40px, 5.8vw, 96px)/1.04 Pix; letter-spacing: -.01em; min-he
 h1 .cur { display: inline-block; width: .5em; height: .8em; background: var(--acc); vertical-align: -.05em; animation: blink .8s steps(1) infinite; }
 .hero p { color: var(--soft); font-size: clamp(18px, 1.6vw, 22px); max-width: 620px; margin: 28px 0 36px; }
 .hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero .availability { font: 13px/1.6 Silk, monospace; color: var(--acc); margin: 22px 0 0; }
+.hero .download { display: inline-block; margin-top: 18px; color: var(--soft); font-size: 16px; text-decoration: underline; text-underline-offset: 4px; }
 .reel { position: relative; aspect-ratio: 9/16; max-height: 78vh; justify-self: end; width: 100%; max-width: 440px; clip-path: var(--notch); background: var(--panel); }
 .reel video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .reel .tag { position: absolute; left: 14px; top: 14px; background: var(--bg); color: var(--acc); padding: 8px 10px; clip-path: var(--notch); --px: 3px; }
@@ -115,6 +120,16 @@ h2 { font: 700 clamp(34px, 4.6vw, 64px)/1.05 Pix; }
 .tile .client { color: var(--acc); }
 .pill { background: var(--acc); color: var(--bg); padding: 6px 10px; clip-path: var(--notch); --px: 2px; font-size: 10px; }
 .tile h3 { font: 700 26px/1.15 Pix; margin-top: 6px; }
+.work-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.work-links a { border: 1px solid var(--line); padding: 12px 16px; color: var(--soft); font: 12px/1.4 Silk, monospace; }
+.work-links a:hover, .work-links a:focus-visible { color: var(--acc); border-color: var(--acc); }
+.work-group { scroll-margin-top: 90px; margin-top: 48px; }
+.work-group h3.group-title { font: 700 clamp(28px, 3vw, 40px)/1.2 Pix; }
+.work-group > p { color: var(--soft); margin: 10px 0 24px; max-width: 750px; }
+.contact .brief-note { color: var(--soft); max-width: 680px; margin-top: 24px; font-size: 20px; }
+a:focus-visible, button:focus-visible, .tile:focus-visible { outline: 3px solid var(--acc); outline-offset: 5px; }
+section[id] { scroll-margin-top: 88px; }
+@media (max-width: 480px) { .contact .ctas .btn { max-width: 100%; font-size: 10px; overflow-wrap: anywhere; line-height: 1.5; } }
 
 /* stepped reveal */
 .rv { opacity: 0; transform: translateY(24px); }
@@ -148,7 +163,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 <nav><div class="wrap">
   <b>Marwan Ahmed</b>
   <div class="links lab">
-    <a href="#work">Work</a><a href="#clients">Clients</a><a href="#about">About</a>
+    <a href="#work">Work</a><a href="#motion">Motion</a><a href="#about">About</a>
     <a class="cta btn small" href="#contact">Contact</a>
   </div>
 </div></nav>
@@ -160,8 +175,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <p>AI product ads, brand films and social visuals for brands and agencies, finished with real motion design, editing and sound.</p>
     <div class="ctas">
       <a class="btn" href="#work">&#9654; See the work</a>
-      <a class="btn ghost" href="Marwan_Ahmed_Portfolio_2026.pdf" download>Download PDF</a>
+      <a class="btn ghost" href="mailto:marouaneahmed5@gmail.com?subject=Freelance%20video%20project">Discuss a project</a>
     </div>
+    <p class="availability">Open to remote freelance &amp; part-time collaboration.</p>
+    <a class="download" href="Marwan_Ahmed_Portfolio_2026.pdf" download>Download portfolio PDF</a>
   </div>
   <div class="reel"><video src="reel.mp4" autoplay muted loop playsinline preload="auto"></video><span class="tag lab">Showreel</span></div>
 </header>
@@ -183,15 +200,24 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <div class="wrap"><div class="wall" id="wall"></div></div>
 </section>
 
-<section class="wrap" id="work"><div class="head"><h2>Selected work</h2><span class="lab">Tap a tile to watch</span></div><div class="grid"></div></section>
+<section class="wrap" id="work">
+  <div class="head"><h2>Selected work</h2><span class="lab">Tap a tile to watch</span></div>
+  <div class="work-links" aria-label="Work categories">
+    <a href="#ai">AI commercials</a><a href="#motion">Motion design</a><a href="#personal">Personal films</a>
+  </div>
+  <div id="work-groups"></div>
+</section>
 
 <div class="checker"></div>
 <section class="wrap contact" id="contact">
   <h2>Have a product?<br>Let’s make it move.</h2>
+  <p class="brief-note">Need a freelance hand on a campaign? Send the brief, formats, target date and budget range. I work remotely with brands, agencies and production teams.</p>
   <div class="ctas">
-    <a class="btn" href="mailto:marouaneahmed5@gmail.com">marouaneahmed5@gmail.com</a>
+    <a class="btn" href="mailto:marouaneahmed5@gmail.com?subject=Freelance%20video%20project">Email Marwan</a>
+    <a class="btn ghost" href="https://wa.me/201156881128?text=Hi%20Marwan%2C%20I%27d%20like%20to%20discuss%20a%20video%20project." target="_blank" rel="noopener">WhatsApp</a>
     <a class="btn ghost" href="https://www.upwork.com/freelancers/~017ab79d3fea74a68d" target="_blank" rel="noopener">Upwork profile</a>
   </div>
+  <p class="brief-note"><a href="mailto:marouaneahmed5@gmail.com">marouaneahmed5@gmail.com</a> &middot; Egypt / remote</p>
 </section>
 <footer><div class="wrap"><span>© 2026 Marwan Ahmed</span><span>AI Video · Motion Design · Egypt</span></div></footer>
 
@@ -248,7 +274,12 @@ $('#wall').innerHTML = CLIENTS.map(n => `<div class="brand rv">${esc(n)}</div>`)
 $('#bcount').textContent = CLIENTS.length + ' brands';
 
 {
-  let html = WORK.map(([slug, client, title, tag]) => `
+  const groups = [
+    ['ai', 'AI commercials', 'Automotive, food and product films, finished with editing, motion graphics and sound.'],
+    ['motion', 'Motion design', 'After Effects brand motion, illustrated product stories and campaign animation.'],
+    ['personal', 'Personal films', 'Self-initiated films and visual experiments, separate from client work.'],
+  ];
+  const tile = ([slug, client, title, tag]) => `
     <div class="tile rv" data-slug="${slug}" data-title="${esc(title)}" data-client="${esc(client)}" tabindex="0" role="button" aria-label="Watch ${esc(title)}">
       <div class="media">
         <img src="posters/${slug}.jpg" alt="" loading="lazy">
@@ -257,8 +288,11 @@ $('#bcount').textContent = CLIENTS.length + ' brands';
       </div>
       <div class="meta"><span class="client lab">${esc(client)}</span>${slug === 'gbauto' ? '<span class="pill lab">Motion part only</span>' : ''}</div>
       <h3>${esc(title)}</h3>
-    </div>`).join('');
-  $('#work .grid').innerHTML = html;
+    </div>`;
+  $('#work-groups').innerHTML = groups.map(([id, title, description]) => {
+    const items = WORK.filter(work => work[4] === id);
+    return `<div class="work-group" id="${id}"><h3 class="group-title">${title} <span class="lab">${items.length} films</span></h3><p>${description}</p><div class="grid">${items.map(tile).join('')}</div></div>`;
+  }).join('');
 }
 
 // play loops only while on screen
